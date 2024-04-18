@@ -1,0 +1,21 @@
+@Metadata.layer: #CORE
+annotate view Z_C_ZSCHOOL with
+{
+  @UI.lineItem: [{ label: 'School ID' , position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  SchoolId;
+  @Search.defaultSearchElement: true
+  @UI.lineItem: [{ label : 'School Name', position: 20 }]
+  Name;
+  @UI.lineItem: [{ label : 'School Name', position : 30 }]
+  Medium;
+  @UI.lineItem: [{ label : 'Type', position : 40 }]
+  Type;
+  @UI.lineItem: [{ label: 'Dated' }]
+  CreatedAt;
+  @UI.lineItem: [{ label: 'Time' }]
+  CreatedOn;
+  @UI.lineItem: [{ label: 'Creator' }]
+  CreatedBy;
+
+}

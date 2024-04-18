@@ -1,0 +1,26 @@
+managed implementation in class zbp_i_zschool unique;
+strict ( 2 );
+
+define behavior for Z_I_ZSCHOOL //alias <alias_name>
+persistent table zschool
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  association _Branch { create; }
+}
+
+define behavior for Z_I_ZBRANCH //alias <alias_name>
+persistent table zbranch
+lock dependent by _School
+authorization dependent by _School
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) SchoolId;
+  association _School;
+}

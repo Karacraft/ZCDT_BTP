@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition'
+define service Z_C_ZSCHOOL_SRV {
+  expose Z_C_ZSCHOOL as School;
+}
