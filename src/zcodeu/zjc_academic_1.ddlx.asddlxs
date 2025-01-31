@@ -1,0 +1,73 @@
+@Metadata.layer: #PARTNER
+@UI:{
+    headerInfo:{ 
+        typeName: 'Academic Result' , 
+        typeNamePlural: 'Academic Results',
+        title:{ 
+            type: #STANDARD , 
+            label: 'Academic Result', 
+            value: 'StudentId' 
+            },
+        description:{ 
+            type: #STANDARD, 
+            label: 'Academic Result' 
+            }
+ },
+ presentationVariant: [{ 
+    sortOrder: [{ 
+        by: 'Semester' , 
+        direction: #ASC }]  
+        }]
+}
+@Search.searchable: true
+annotate entity ZJC_ACADEMIC_1
+    with 
+{
+   @UI.facet:[ { id:'Academic', 
+                purpose: #STANDARD,
+                type:#IDENTIFICATION_REFERENCE,
+                label: 'Academic Result', 
+                position: 10 } ]
+
+  @UI:{ lineItem: [{ position: 10  }],
+        selectionField: [{ position: 10  }],
+        identification: [{ position: 10  }]}
+  StudentId;
+  @UI:{ lineItem: [{ position: 20  }],
+     selectionField: [{ position: 20  }],
+     identification: [{ position: 20  }]}
+  @Search.defaultSearchElement: true
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZJI_COURSE' , element: 'Value' },
+  distinctValues: true,
+  additionalBinding: [{ localElement: 'CourseDescription', element: 'Description' , usage: #FILTER_AND_RESULT}]
+  }]
+  Course;
+  @UI:{ lineItem: [{ position: 30  }],
+        selectionField: [{ position: 30  }],
+        identification: [{ position: 30  }]}
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZJI_SEMESTER' , element: 'Value' },
+  distinctValues: true,
+  additionalBinding: [{ localElement: 'SemesterDescription', element: 'Description' , usage: #FILTER_AND_RESULT}]
+  }]
+  Semester;
+  @UI:{ lineItem: [{ position: 40  }],
+        selectionField: [{ position: 40  }],
+        identification: [{ position: 40  }]}
+  CourseDescription;
+  @UI:{ lineItem: [{ position: 50  }],
+        selectionField: [{ position: 50  }],
+        identification: [{ position: 50  }]}
+  SemesterDescription;
+  @UI:{ lineItem: [{ position: 60  }],
+        selectionField: [{ position: 60  }],
+        identification: [{ position: 60  }]}
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZJI_RESULT' , element: 'Value' },
+  distinctValues: true,
+  additionalBinding: [{ localElement: 'ResultDescription', element: 'Description' , usage: #FILTER_AND_RESULT}]
+  }]
+  SemesterResult;
+  @UI:{ lineItem: [{ position: 70  }],
+        selectionField: [{ position: 70  }],
+        identification: [{ position: 70  }]}
+  ResultDescription;
+}

@@ -1,0 +1,66 @@
+@Metadata.layer: #CUSTOMER
+@UI:{
+    headerInfo:{ 
+        typeName: 'Student',
+        typeNamePlural: 'Students', 
+        title:{ 
+            type: #STANDARD, 
+            label: 'Student', 
+            value: 'StudentId' } 
+            }
+    }
+annotate entity ZJC_STUDENT_1
+    with 
+{
+@UI.facet: [
+  { id : 'Student', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Student' , 
+    position: 10
+  },
+  { id : 'Academic' , 
+    purpose: #STANDARD , 
+    type: #LINEITEM_REFERENCE, 
+    label: 'Academic Result',
+    position:20, 
+    targetElement: '_Academic' 
+    }
+]
+  
+  @UI:{ lineItem: [{ position: 10  }]}
+  StudentId;
+  @UI:{ lineItem: [{ position: 20  }],
+        selectionField: [{ position: 20  }],
+        identification: [{ position: 20  }]}
+  FirstName;
+  @UI:{ lineItem: [{ position: 30  }],
+        selectionField: [{ position: 30  }],
+        identification: [{ position: 30  }]}
+  LastName;
+  @UI:{ lineItem: [{ position: 40  }],
+        identification: [{ position: 40  }]}
+  Age;
+  @UI:{ lineItem: [{ position: 50  }],
+        identification: [{ position: 50  }]}
+  Dob;
+  @UI:{ lineItem: [{ position: 60  }],
+        identification: [{ position: 60  }]}
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZJI_GENDER' , element: 'Value' },
+  distinctValues: true,
+  additionalBinding: [{ localElement: 'GenderDesc', element: 'Description' , usage: #FILTER_AND_RESULT}]
+  }]
+  Gender;
+  @UI:{ identification: [ { position:70, label:'Gender Description' } ] }
+  GenderDesc;
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

@@ -1,0 +1,71 @@
+managed;
+//strict;
+with draft;
+
+define behavior for ZJI_STUDENT alias Student
+implementation in class zbp_ji_student unique
+persistent table zjtb_student
+draft table zjtb_dstudent
+lock master total etag LocalLastChangedAt
+authorization master ( global,instance )
+etag master LocalLastChangedAt
+{
+  create;
+  update (precheck);
+  delete;
+
+  association _Academic {create;}
+
+  field ( numbering : managed, readonly ) StudentId;
+
+  field ( readonly ) CreatedBy,CreatedAt, LastChangedBy, LastChangedAt,GenderDesc,CourseDuration;
+  field ( mandatory ) FirstName,LastName,Gender,Dob,Course;
+
+  action ( features : instance , authorization : update ) setAdmitted result [1] $self;
+
+  validation validateAge on save { field Age; create;}
+
+  determination updateCourseDuration on save { field Course; }
+
+  mapping for zjtb_student
+    {
+      StudentId          = student_id;
+      FirstName          = first_name;
+      LastName           = last_name;
+      Age                = age;
+      Course             = course;
+      CourseDuration     = course_duration;
+      Status             = status;
+      Gender             = gender;
+      Dob                = dob;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+define behavior for ZJI_ACADEMIC alias Academic
+implementation in class zbp_ji_academic unique
+persistent table zjtb_academic
+draft table zjtb_dacademic
+lock dependent by _Student
+authorization dependent by _Student
+//etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  association _Student;
+
+  field (readonly)StudentId,CourseDescription,SemesterDescription,ResultDescription;
+ field ( mandatory ) Course,Semester;
+//
+  mapping for zjtb_academic
+    {
+      StudentId =  student_id;
+      Course = course;
+      Semester = semester;
+      SemesterResult = semresult;
+    }
+}

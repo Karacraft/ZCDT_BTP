@@ -1,0 +1,55 @@
+@Metadata.layer: #CUSTOMER
+@UI:{
+    headerInfo:{ 
+        typeName: 'Upload Attachment' , 
+        typeNamePlural: 'Upload Attachments',
+        title:{ 
+            type: #STANDARD , 
+            label: 'Upload', 
+            value: 'Student_Id' 
+            },
+        description:{ 
+            type: #STANDARD, 
+            label: 'Upload' 
+            }
+ }
+}
+annotate entity ZJC_ATTACHMENT
+    with 
+{
+@UI.facet: [{ 
+    id:'Upload',
+    purpose: #STANDARD,
+    label: 'Attachments',
+    type: #IDENTIFICATION_REFERENCE,
+    position: 10
+}]
+@UI:{ 
+    lineItem: [{ position: 10  }],
+    identification: [{ position: 10 }]
+}
+ AttaId;
+ @UI:{ 
+    lineItem: [{ position: 20  }],
+    identification: [{ position: 20 }]
+}
+ Student_Id;
+ @UI:{ 
+    lineItem: [{ position: 30  }],
+    identification: [{ position: 30 }]
+}
+ Comments;
+ @UI:{ 
+    lineItem: [{ position: 40  }],
+    identification: [{ position: 40 }]
+}
+ Attachment;
+ @UI.hidden: true
+ Mimetype;
+  @UI.hidden: true
+ Filename;
+ @UI.hidden: true
+ LastChangedAt;
+// /* Associations */
+// _Student;   
+}

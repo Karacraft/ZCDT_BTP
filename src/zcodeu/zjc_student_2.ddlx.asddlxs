@@ -1,0 +1,57 @@
+@Metadata.layer: #CUSTOMER
+@UI:{
+    headerInfo:{ 
+        typeName: 'Student',
+        typeNamePlural: 'Students', 
+        title:{ 
+            type: #STANDARD, 
+            label: 'Student', 
+            value: 'StudentId' } 
+            }
+    }
+annotate entity ZJC_STUDENT_2
+    with 
+{
+@UI.facet: [{ 
+    id:'StudentData',
+    purpose: #STANDARD,
+    label: 'Student Data',
+    type: #IDENTIFICATION_REFERENCE,
+    position: 10
+},{ 
+    id:'Upload',
+    purpose: #STANDARD,
+    label: 'Upload Attachments',
+    type:#LINEITEM_REFERENCE,
+    targetElement: '_Attachment',
+    position: 20
+}]
+@UI:{ 
+    selectionField: [{ position: 10 }],
+    lineItem: [{ position: 10  }],
+    identification: [{ position: 10 }]
+}
+StudentId;
+@UI:{ 
+    lineItem: [{ position: 20  }],
+    identification: [{ position: 20 }]
+}
+FirstName;
+@UI:{ 
+    lineItem: [{ position: 30  }],
+    identification: [{ position: 30 }]
+}
+LastName;
+@UI.hidden: true
+CreatedBy;
+@UI.hidden: true
+CreatedAt;
+@UI.hidden: true
+LastChangedBy;
+@UI.hidden: true
+LastChangedAt;
+@UI.hidden: true
+LocalLastChangedAt;
+///* Associations */
+//_Attachment;    
+}

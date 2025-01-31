@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for ZJC_STUDENT_2'
+define service ZUI_ZJC_STUDENT_2 {
+  expose ZJC_STUDENT_2  as Student;
+  expose ZJC_ATTACHMENT as Attachment;
+}

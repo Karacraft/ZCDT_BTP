@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DEVC>
-    <CTEXT>Dukes Package</CTEXT>
+    <CTEXT>Open SAP 9990 Unmanaged</CTEXT>
    </DEVC>
   </asx:values>
  </asx:abap>

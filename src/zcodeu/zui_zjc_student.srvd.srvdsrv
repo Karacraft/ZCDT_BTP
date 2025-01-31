@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for ZJC_STUDENT'
+define service ZUI_ZJC_STUDENT {
+  expose ZJI_STUDENT  as Student;
+  expose ZJI_ACADEMIC as Academic;
+}
