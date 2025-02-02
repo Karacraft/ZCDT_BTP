@@ -1,64 +1,27 @@
-managed;// ;
-//strict ( 2 );
-with draft;
+unmanaged implementation in class zbp_ji_student_1 unique;
+strict ( 2 );
 
 define behavior for ZJI_STUDENT_1 alias Student
-implementation in class zbp_ji_student_1 unique
-persistent table zjtb_student_1
-draft table zjtb_dstudent_1
+//late numbering
 lock master
-total etag LocalLastChangedAt
-authorization master ( global )
-etag master LocalLastChangedAt
+authorization master ( instance )
+etag master LastChangedAt
 {
   create;
   update;
   delete;
-
-  association _Academic { create; with draft; }
-
-  field ( readonly ) StudentId,CreatedBy,CreatedAt, LastChangedBy, LastChangedAt,GenderDesc;
-  field ( mandatory ) FirstName,LastName,Gender,Dob;
-
-  determination createStudentID on save { create;}
-
-  mapping for zjtb_student_1
-    {
-      StudentId          = student_id;
-      FirstName          = first_name;
-      LastName           = last_name;
-      Age                = age;
-      Gender             = gender;
-      Dob                = dob;
-      MultiCourseAllowed = multi_course_allowed;
-      CreatedBy          = created_by;
-      CreatedAt          = created_at;
-      LastChangedBy      = last_changed_by;
-      LastChangedAt      = last_changed_at;
-      LocalLastChangedAt = local_last_changed_at;
-    }
+  field ( readonly ) StudentId;
+  association _Academic { create; }
 }
 
 define behavior for ZJI_ACADEMIC_1 alias Academic
-persistent table zjtb_academic_1
-draft table zjtb_dacademic_1
+//late numbering
 lock dependent by _Student
 authorization dependent by _Student
-etag dependent by _Student
+//etag master
 {
   update;
   delete;
-  association _Student { with draft;}
-
-  field ( readonly ) StudentId;
-  field ( mandatory ) Course,Semester;
-
-    mapping for zjtb_academic
-    {
-      StudentId =  student_id;
-      Course = course;
-      Semester = semester;
-      SemesterResult = semresult;
-
-    }
+  field ( readonly ) StudentId, Course, Semester;
+  association _Student;
 }

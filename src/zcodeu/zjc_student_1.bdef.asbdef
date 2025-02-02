@@ -1,6 +1,5 @@
 projection;
-//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
-use draft;
+strict ( 2 );
 
 define behavior for ZJC_STUDENT_1 alias Student
 {
@@ -8,7 +7,7 @@ define behavior for ZJC_STUDENT_1 alias Student
   use update;
   use delete;
 
-  use association _Academic { create; with draft; }
+  use association _Academic { create; }
 }
 
 define behavior for ZJC_ACADEMIC_1 alias Academic
@@ -16,5 +15,5 @@ define behavior for ZJC_ACADEMIC_1 alias Academic
   use update;
   use delete;
 
-  use association _Student { with draft; }
+  use association _Student;
 }

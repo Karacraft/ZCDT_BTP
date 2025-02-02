@@ -53,6 +53,8 @@ annotate entity ZJC_STUDENT_1
   Gender;
   @UI:{ identification: [ { position:70, label:'Gender Description' } ] }
   GenderDesc;
+  @UI:{ identification: [ { position:80, label:'Multi.Course Allowed' } ] }
+  MultiCourseAllowed;
   @UI.hidden: true
   CreatedBy;
   @UI.hidden: true
