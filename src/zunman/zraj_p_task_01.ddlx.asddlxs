@@ -1,0 +1,54 @@
+@Metadata.layer: #CORE
+@UI:{ 
+    headerInfo:{ 
+        typeName: 'Task',
+        typeNamePlural: 'Tasks',
+        title:{ 
+            type:#STANDARD,
+            label: 'Task',
+            value: 'TaskId'
+        }
+    }
+}
+annotate entity ZRAJ_P_TASK_01
+    with 
+{
+@UI.facet: [
+    { id: 'Task',
+      purpose:  #STANDARD,
+      type:#IDENTIFICATION_REFERENCE,
+      label: 'Task',
+      position: 10
+    },
+    { 
+        id: 'Items',
+        purpose: #STANDARD,
+        type:#LINEITEM_REFERENCE,
+        label: 'Items',
+        position:20,
+        targetElement: '_Item'
+    }
+]
+@UI:{ lineItem: [{ position: 10  }], 
+      identification: [{ position: 10 , label: 'Task ID'}]}
+TaskId;
+@UI:{ lineItem: [{ position: 20  }],
+      identification: [{ position: 20 , label: 'Task'}]}
+Description;
+@UI:{ lineItem: [{ position: 30  }],
+      identification: [{ position: 30, label : 'Done' }]}
+Completed;
+@UI.hidden: true
+CreatedBy;
+@UI.hidden: true
+CreatedDate;
+@UI.hidden: true
+LastChangedBy;
+@UI.hidden: true
+LastChangedAt;
+@UI.hidden: true
+LocalLastChangedAt;
+///* Associations */
+//_Item;
+//    
+}

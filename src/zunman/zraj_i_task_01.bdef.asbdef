@@ -1,0 +1,59 @@
+managed implementation in class zbp_raj_i_task_01 unique;
+//strict ;
+
+define behavior for zraj_i_task_01 alias Task
+persistent table zraj_task_01
+lock master
+authorization master ( instance )
+//etag master LocalLastChangedAt
+early numbering
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) TaskId,Completed;
+  field ( mandatory ) Description;
+  association _Item { create; }
+
+  determination setCompletedToNot on  save { field Completed ; }
+
+  mapping for zraj_task_01
+    {
+      TaskId             = task_id;
+      Description        = description;
+      Completed          = completed;
+      CreatedBy          = created_by;
+      CreatedDate        = created_date;
+      LastChangedAt      = last_changed_at;
+      LastChangedBy      = last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+define behavior for ZRAJ_I_TASK_ITEM_01 alias Item
+persistent table zaj_task_item_01
+lock dependent by _Task
+authorization dependent by _Task
+//etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( numbering : managed, readonly ) TaskIId;
+  field ( readonly ) TaskId;
+  field ( mandatory ) Subtask, DueDate;
+  association _Task;
+
+  mapping for zaj_task_item_01
+    {
+      TaskId             = task_id;
+      TaskIId            = task_i_id;
+      Subtask            = subtask;
+      DueDate            = due_date;
+      CreatedBy          = created_by;
+      CreatedDate        = created_date;
+      LastChangedAt      = last_changed_at;
+      LastChangedBy      = last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+}

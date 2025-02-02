@@ -1,6 +1,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Projection view'
 @Metadata.ignorePropagatedAnnotations: true
+@Metadata.allowExtensions: true
 define view entity ZRAJ_P_TASK_ITEM_01 
 as projection on ZRAJ_I_TASK_ITEM_01 as Item
 {
