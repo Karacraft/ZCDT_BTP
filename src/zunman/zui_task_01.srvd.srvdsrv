@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition'
+define service ZUI_TASK_01 {
+  expose ZRAJ_P_TASK_01      as Task;
+  expose ZRAJ_P_TASK_ITEM_01 as Item;
+}
