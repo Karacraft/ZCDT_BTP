@@ -35,8 +35,10 @@ TaskId;
 @UI:{ lineItem: [{ position: 20  }],
       identification: [{ position: 20 , label: 'Task'}]}
 Description;
-@UI:{ lineItem: [{ position: 30  }],
-      identification: [{ position: 30, label : 'Done' }]}
+@UI:{ lineItem: [{ position: 30  },
+      { type: #FOR_ACTION, dataAction: 'setCompleted', label: 'Set Admitted' }],
+        identification: [{ position: 30  },
+      { type: #FOR_ACTION, dataAction: 'setCompleted', label: 'Set Admitted' }]}
 Completed;
 @UI.hidden: true
 CreatedBy;

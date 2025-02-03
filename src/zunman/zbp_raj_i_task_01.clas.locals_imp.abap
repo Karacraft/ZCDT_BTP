@@ -3,8 +3,13 @@ CLASS lhc_Task DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS get_instance_authorizations FOR INSTANCE AUTHORIZATION
       IMPORTING keys REQUEST requested_authorizations FOR Task RESULT result.
-    METHODS setcompletedtonot FOR DETERMINE ON SAVE
+    METHODS setcompletedtonot FOR DETERMINE ON modify
       IMPORTING keys FOR task~setcompletedtonot.
+    METHODS get_instance_features FOR INSTANCE FEATURES
+      IMPORTING keys REQUEST requested_features FOR task RESULT result.
+
+    METHODS setcompleted FOR MODIFY
+      IMPORTING keys FOR ACTION task~setcompleted RESULT result.
     METHODS earlynumbering_create FOR NUMBERING
       IMPORTING entities FOR CREATE task.
 
@@ -24,17 +29,34 @@ CLASS lhc_Task IMPLEMENTATION.
   METHOD setcompletedtonot.
 
     READ ENTITIES OF zraj_i_task_01 IN LOCAL MODE
-       ENTITY Task
-       FIELDS ( Completed )
-       WITH CORRESPONDING #( keys )
-       RESULT DATA(tsk).
-    LOOP AT tsk INTO DATA(wa).
+         ENTITY Task
+         FIELDS ( Completed )
+         WITH CORRESPONDING #( keys )
+         RESULT DATA(stud).
+    LOOP AT stud INTO DATA(wa).
+
+*      IF wa-Course EQ 'APS'. res = 5. ENDIF.
+*      IF wa-Course EQ 'BIO'. res = 8. ENDIF.
+*      IF wa-Course EQ 'CHM'. res = 7. ENDIF.
+*      IF wa-Course EQ 'DAM'. res = 3. ENDIF.
+*      IF wa-Course EQ 'ELC'. res = 4. ENDIF.
+*      IF wa-Course EQ 'COM'. res = 2. ENDIF.
+
 
       MODIFY ENTITIES OF zraj_i_task_01 IN LOCAL MODE
       ENTITY Task
       UPDATE
       FIELDS (  Completed ) WITH VALUE #( ( %tky = wa-%tky Completed = 'N' ) ).
     ENDLOOP.
+
+
+
+  ENDMETHOD.
+
+  METHOD get_instance_features.
+  ENDMETHOD.
+
+  METHOD setCompleted.
   ENDMETHOD.
 
 ENDCLASS.
