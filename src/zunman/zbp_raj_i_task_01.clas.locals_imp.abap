@@ -3,7 +3,7 @@ CLASS lhc_Task DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS get_instance_authorizations FOR INSTANCE AUTHORIZATION
       IMPORTING keys REQUEST requested_authorizations FOR Task RESULT result.
-    METHODS setcompletedtonot FOR DETERMINE ON modify
+    METHODS setcompletedtonot FOR DETERMINE ON MODIFY
       IMPORTING keys FOR task~setcompletedtonot.
     METHODS get_instance_features FOR INSTANCE FEATURES
       IMPORTING keys REQUEST requested_features FOR task RESULT result.
@@ -54,9 +54,37 @@ CLASS lhc_Task IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_instance_features.
+    READ ENTITIES OF zraj_i_task_01 IN LOCAL MODE
+           ENTITY Task
+           FIELDS ( Completed )
+           WITH CORRESPONDING #( keys )
+           RESULT DATA(taskdone)
+           FAILED failed.
+    " Check the selected task is completed or not & disable setCompleted action accordingly
+    result =  VALUE  #( FOR t IN taskdone
+           LET CompletedVal = COND #( WHEN t-Completed = 'Y'
+                                      THEN if_abap_behv=>fc-o-disabled
+                                      ELSE if_abap_behv=>fc-o-enabled  )
+    " send back the status here
+            IN ( %tky = t-%tky %action-setCompleted = CompletedVal ) ).
   ENDMETHOD.
 
   METHOD setCompleted.
+
+    MODIFY ENTITIES OF zraj_i_task_01 IN LOCAL MODE
+    ENTITY task
+    UPDATE FIELDS (  Completed )
+    WITH VALUE #( FOR key IN keys ( %tky = key-%tky Completed = 'Y' ) )
+    FAILED failed
+    REPORTED reported.
+
+    READ ENTITIES OF zraj_i_task_01 IN LOCAL MODE
+    ENTITY task
+    ALL FIELDS WITH CORRESPONDING #( keys )
+    RESULT DATA(taskdata).
+
+    result = VALUE #( FOR t IN taskdata ( %tky = t-%tky %param = t ) ).
+
   ENDMETHOD.
 
 ENDCLASS.

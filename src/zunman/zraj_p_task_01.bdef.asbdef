@@ -8,6 +8,8 @@ define behavior for ZRAJ_P_TASK_01 alias Task
   use delete;
 
   use association _Item { create; }
+
+  use action setCompleted;
 }
 
 define behavior for ZRAJ_P_TASK_ITEM_01 alias Item

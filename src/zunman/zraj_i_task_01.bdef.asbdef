@@ -15,7 +15,8 @@ early numbering
   field ( mandatory ) Description;
   association _Item { create; }
 
-action ( features : instance ) setCompleted result [1] $self;
+  action ( features : instance ) setCompleted result [1] $self;
+
   determination setCompletedToNot on modify { field TaskId;  }
 
   mapping for zraj_task_01
