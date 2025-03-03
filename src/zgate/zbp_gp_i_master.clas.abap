@@ -1,15 +1,5 @@
-class ZBP_GP_I_MASTER definition
-  public
-  abstract
-  final
-  create public .
-
-public section.
-protected section.
-private section.
+CLASS zbp_gp_i_master DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zgp_i_master.
 ENDCLASS.
 
-
-
-CLASS ZBP_GP_I_MASTER IMPLEMENTATION.
+CLASS zbp_gp_i_master IMPLEMENTATION.
 ENDCLASS.

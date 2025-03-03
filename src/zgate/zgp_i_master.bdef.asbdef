@@ -4,12 +4,13 @@ strict;
 define behavior for ZGP_I_MASTER alias Master
 persistent table zgp_master
 lock master
-authorization master ( instance )
+authorization master ( instance,global )
+late numbering
 //etag master <field_name>
 {
-  create;
-  update;
-  delete;
+  create ( features : global );
+  update ( features : instance  );
+  delete ( features : instance );
   field ( readonly ) GpId,Completed;
   field ( mandatory ) Description;
   association _Detail { create; }
