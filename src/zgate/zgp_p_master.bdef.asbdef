@@ -1,0 +1,19 @@
+projection;
+strict ( 1 );
+
+define behavior for ZGP_P_MASTER alias Master
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Detail { create; }
+}
+
+define behavior for ZGP_P_DETAIL alias Detail
+{
+  use update;
+  use delete;
+
+  use association _Master;
+}

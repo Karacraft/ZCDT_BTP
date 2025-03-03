@@ -1,0 +1,55 @@
+managed implementation in class zbp_gp_i_master unique;
+strict;
+
+define behavior for ZGP_I_MASTER alias Master
+persistent table zgp_master
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) GpId,Completed;
+  field ( mandatory ) Description;
+  association _Detail { create; }
+
+    mapping for zgp_master
+    {
+      GpId             = gpid;
+      Description        = description;
+      Completed          = completed;
+      CreatedBy          = created_by;
+      CreatedDate        = created_date;
+      LastChangedAt      = last_changed_at;
+      LastChangedBy      = last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+define behavior for ZGP_I_DETAIL alias Detail
+persistent table zgp_detail
+lock dependent by _Master
+authorization dependent by _Master
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( numbering:managed, readonly ) DetailId;
+  field ( readonly ) GpId;
+  field ( mandatory ) Detail,DueDate;
+  association _Master;
+
+    mapping for zgp_detail
+    {
+      GpId             = gpid;
+      DetailId            = gpd_id;
+      Detail            =  detail;
+      DueDate            = due_date;
+      CreatedBy          = created_by;
+      CreatedDate        = created_date;
+      LastChangedAt      = last_changed_at;
+      LastChangedBy      = last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}

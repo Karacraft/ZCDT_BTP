@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition'
+define service ZGP_UI_01 {
+  expose ZGP_P_MASTER as Master;
+  expose ZGP_P_DETAIL as Detail;
+}

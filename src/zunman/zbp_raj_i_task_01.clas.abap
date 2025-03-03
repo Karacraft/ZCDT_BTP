@@ -1,5 +1,13 @@
-CLASS zbp_raj_i_task_01 DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zraj_i_task_01.
+class ZBP_RAJ_I_TASK_01 definition
+  public
+  create private .
+
+public section.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zbp_raj_i_task_01 IMPLEMENTATION.
+
+
+CLASS ZBP_RAJ_I_TASK_01 IMPLEMENTATION.
 ENDCLASS.

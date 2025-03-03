@@ -1,0 +1,53 @@
+@Metadata.layer: #PARTNER
+@UI:{
+    headerInfo:{
+        typeName: 'Detail' ,
+        typeNamePlural: 'Details',
+        title:{
+            type: #STANDARD ,
+            label: 'Detail',
+            value: 'GpId'
+            },
+        description:{
+            type: #STANDARD,
+            label: 'Detail'
+            }
+ },
+ presentationVariant: [{
+    sortOrder: [{
+        by: 'DetailId' ,
+        direction: #DESC }]
+        }]
+}
+annotate entity ZGP_P_DETAIL
+    with 
+{
+@UI.facet:[ { id:'Item',
+               purpose: #STANDARD,
+               type:#IDENTIFICATION_REFERENCE,
+               label: 'Item',
+               position: 10 } ]
+  @UI:{ lineItem: [{ position: 10  }] }
+  DetailId;
+  @UI:{ lineItem: [{ position: 10  }] }
+  GpId;
+  @UI:{ lineItem: [{ position: 20  }],
+        identification: [{ position: 20 }]}
+  Detail;
+  @UI:{ lineItem: [{ position: 30  }],
+        identification: [{ position: 30 }]}
+  DueDate;
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedDate;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  LocalLastChangedAt;
+  /* Associations */
+  //    _Task;
+    
+}

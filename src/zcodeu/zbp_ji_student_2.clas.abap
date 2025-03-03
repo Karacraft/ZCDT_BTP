@@ -1,5 +1,13 @@
-CLASS zbp_ji_student_2 DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zji_student_2.
+class ZBP_JI_STUDENT_2 definition
+  public
+  create private .
+
+public section.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zbp_ji_student_2 IMPLEMENTATION.
+
+
+CLASS ZBP_JI_STUDENT_2 IMPLEMENTATION.
 ENDCLASS.

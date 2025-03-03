@@ -1,5 +1,13 @@
-CLASS zbp_i_rap_travelu_9990 DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_rap_travelu_9990.
+class ZBP_I_RAP_TRAVELU_9990 definition
+  public
+  create private .
+
+public section.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zbp_i_rap_travelu_9990 IMPLEMENTATION.
+
+
+CLASS ZBP_I_RAP_TRAVELU_9990 IMPLEMENTATION.
 ENDCLASS.

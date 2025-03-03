@@ -1,0 +1,57 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo:{
+        typeName: 'Gatepass',
+        typeNamePlural: 'Gatepasses',
+        title:{
+            type:#STANDARD,
+            label: 'Gatepass',
+            value: 'GpId'
+        }
+    }
+}
+annotate entity ZGP_P_MASTER
+    with 
+{
+    @UI.facet: [
+      { id: 'Task',
+        purpose:  #STANDARD,
+        type:#IDENTIFICATION_REFERENCE,
+        label: 'Task',
+        position: 10
+      },
+      {
+          id: 'Items',
+          purpose: #STANDARD,
+          type:#LINEITEM_REFERENCE,
+          label: 'Items',
+          position:20,
+          targetElement: '_Detail'
+      }
+  ]
+  @UI:{ lineItem: [{ position: 10  }],
+        identification: [{ position: 10 , label: 'GP ID'}]}
+  GpId;
+  @UI:{ lineItem: [{ position: 20  }],
+        identification: [{ position: 20 , label: 'Description'}]}
+  Description;
+  @UI:{ lineItem: [{ position: 30  },
+        { type: #FOR_ACTION, dataAction: 'setCompleted', label: 'Set Completed' }],
+          identification: [{ position: 30  },
+        { type: #FOR_ACTION, dataAction: 'setCompleted', label: 'Set Completed' }]}
+  Completed;
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedDate;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  LocalLastChangedAt;
+  ///* Associations */
+  //_Detail;
+  //
+    
+}

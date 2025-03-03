@@ -1,5 +1,13 @@
-CLASS zbp_ji_academic DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zji_student.
+class ZBP_JI_ACADEMIC definition
+  public
+  create private .
+
+public section.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zbp_ji_academic IMPLEMENTATION.
+
+
+CLASS ZBP_JI_ACADEMIC IMPLEMENTATION.
 ENDCLASS.
